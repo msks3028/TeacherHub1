@@ -1,0 +1,18 @@
+# Secrets — never commit or share these
+.env
+.env.*
+!.env.example
+!backend/.env.example
+
+# Dependencies & builds
+node_modules/
+dist/
+
+# User-uploaded content (videos, PDFs, submissions, QR codes = login credentials)
+backend/uploads/
+
+# Log files (rotated locally; not meant to be committed)
+backend/logs/
+
+# Test coverage output
+backend/coverage/

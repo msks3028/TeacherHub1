@@ -1,0 +1,56 @@
+{
+  "name": "teacherhub-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "dev": "powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -File scripts/dev-local.ps1",
+    "dev:watch": "nodemon src/server.js",
+    "start": "node src/server.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:deploy": "prisma migrate deploy",
+    "prisma:studio": "prisma studio",
+    "seed": "powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -File scripts/seed-local.ps1",
+    "test": "jest --runInBand",
+    "test:watch": "jest --watch",
+    "lint": "node -e \"console.log('no linter configured yet')\""
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.658.1",
+    "@aws-sdk/lib-storage": "^3.658.1",
+    "@aws-sdk/s3-request-presigner": "^3.658.1",
+    "@prisma/client": "^5.19.1",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.4.0",
+    "express-validator": "^7.2.0",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "livekit-server-sdk": "^2.19.1",
+    "multer": "^2.0.2",
+    "prisma": "^5.19.1",
+    "qrcode": "^1.5.4",
+    "sharp": "^0.35.4",
+    "uuid": "^11.1.1",
+    "web-push": "^3.6.7",
+    "winston": "^3.14.2",
+    "winston-daily-rotate-file": "^5.0.0",
+    "xss": "^1.0.15"
+  },
+  "devDependencies": {
+    "jest": "^30.5.2",
+    "nodemon": "^3.1.4",
+    "supertest": "^7.0.0"
+  },
+  "allowScripts": {
+    "@prisma/client@5.22.0": true,
+    "@prisma/engines@5.22.0": true,
+    "prisma@5.22.0": true,
+    "@parcel/watcher@2.6.0": true,
+    "unrs-resolver@1.12.2": true
+  }
+}

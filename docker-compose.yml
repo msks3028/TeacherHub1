@@ -1,0 +1,35 @@
+# Convenience setup for self-hosting on a single VPS. Not required if you
+# deploy backend/frontend separately to Render/Railway/Vercel/etc — those
+# platforms build straight from each folder's own Dockerfile.
+#
+# Usage:
+#   cp backend/.env.example backend/.env   # fill in real values first
+#   docker compose up -d --build
+services:
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env
+    volumes:
+      # Only matters when STORAGE_DRIVER is unset/local in backend/.env —
+      # keeps uploads on this named volume so they survive container
+      # recreation. Prefer STORAGE_DRIVER=s3 for real deployments.
+      - uploads:/app/uploads
+      - logs:/app/logs
+    ports:
+      - "5000:5000"
+
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+    environment:
+      BACKEND_URL: http://backend:5000
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  uploads:
+  logs:
